@@ -1,53 +1,66 @@
-
+import 'package:chart_example_app/customs/restitutor_appbar.dart';
 import 'package:chart_example_app/model/developer_data.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Line extends StatefulWidget {
-  final List<DeveloperData> _chartData;
-  final TooltipBehavior _tooltipBehavior;
-  const Line({super.key, required List<DeveloperData> chartData, required TooltipBehavior tooltipBehavior})
-      : _chartData = chartData,
-        _tooltipBehavior = tooltipBehavior;
+  final List<DeveloperData> list;
+  final tooltipBehavior;
+  const Line({super.key, required this.list, required this.tooltipBehavior});
 
   @override
   State<Line> createState() => _LineState();
 }
 
 class _LineState extends State<Line> {
-  //Property
-  //late 는 초기화를 나중으로 미룸
-
-
+  // === Property ===
+  late List<DeveloperData> _developerDataList;
+  late TooltipBehavior _tooltipBehavior;
   @override
-  void initState() { //페이지가 새로 생성 될때 무조건 1번 사용 됨
+  void initState() {
     super.initState();
-   
-  }
-  
-  @override
-  void dispose() {
-
-    super.dispose();
+    _developerDataList = widget.list;
+    _tooltipBehavior = TooltipBehavior(enable: true);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      
+      appBar: restiApB(inputtext: 'Line'),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-          ],
+        child: SizedBox(
+          width: 400,
+          height: 600,
+          child: SfCartesianChart(
+            title: ChartTitle(text: 'Yearly Growth in the Flutter Community\n\n'),
+            tooltipBehavior: _tooltipBehavior,
+            legend: Legend(isVisible: true,title: LegendTitle(text: '범례')),
+
+            series: [
+              // LineSeries는 추세와 경향을 보는 그래프
+              LineSeries<DeveloperData, int>(
+                name: 'Site 수',
+                dataSource: _developerDataList,
+                xValueMapper: (DeveloperData developers, _) {return developers.years;},
+                yValueMapper: (DeveloperData developers, _) =>developers.developers,
+                enableTooltip: true,
+                dataLabelSettings: DataLabelSettings(
+                  isVisible: true),
+              ),
+            ],
+            //x축을 Category로 표현
+            primaryXAxis: CategoryAxis(
+              title: AxisTitle(text: '년도'),
+            ),
+            //y축은 숫자로 표현
+            primaryYAxis: NumericAxis(
+              title: AxisTitle(text: '사이트 수'),
+            ),
+          ),
         ),
       ),
     );
-  }
+  } // build
 
-
-  //--------Functions ------------
-  
-  //------------------------------
+  // === Functions ===
 }
