@@ -26,7 +26,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
   @override
   void initState() { //페이지가 새로 생성 될때 무조건 1번 사용 됨
     super.initState();
-    tabbarController = TabController(length: 5, vsync: this);
+    tabbarController = TabController(length: 3, vsync: this);
     _chartData = [];
     _addData();
     
