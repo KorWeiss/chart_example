@@ -26,7 +26,7 @@ class _AreaState extends State<Area> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: restiApB(inputtext: 'Line'),
+      appBar: restiApB(inputtext: 'Area'),
       body: Center(
         child: SizedBox(
           width: 400,

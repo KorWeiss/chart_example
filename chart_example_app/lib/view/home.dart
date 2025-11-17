@@ -1,8 +1,11 @@
 
 import 'package:chart_example_app/model/developer_data.dart';
+import 'package:chart_example_app/view/area.dart';
 import 'package:chart_example_app/view/bar.dart';
+import 'package:chart_example_app/view/doughnut.dart';
 import 'package:chart_example_app/view/line.dart';
 import 'package:chart_example_app/view/pie.dart';
+import 'package:chart_example_app/view/step_lines.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -26,7 +29,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
   @override
   void initState() { //페이지가 새로 생성 될때 무조건 1번 사용 됨
     super.initState();
-    tabbarController = TabController(length: 5, vsync: this);
+    tabbarController = TabController(length: 6, vsync: this);
     _chartData = [];
     _addData();
     
@@ -43,12 +46,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("차트 탭바"),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   title: const Text("차트 탭바"),
+      //   backgroundColor: Colors.blue,
+      //   foregroundColor: Colors.white,
+      //   centerTitle: true,
+      // ),
       body: TabBarView( //화면 이동이 아니라 화면 바꿔치기
         controller: tabbarController,
         physics: NeverScrollableScrollPhysics(), // 🔒 스와이프 막기
@@ -57,6 +60,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
           Bar(chartData: _chartData , tooltipBehavior: _tooltipBehavior),
           Line(chartData: _chartData, tooltipBehavior: _tooltipBehavior),
           Pie(chartData: _chartData, tooltipBehavior: _tooltipBehavior),
+          Doughnut(chartData: _chartData , tooltipBehavior: _tooltipBehavior),
+          Area(list: _chartData, tooltipBehavior: _tooltipBehavior),
+          StepLines(list: _chartData),
         ],
       ),
       bottomNavigationBar: Container(
@@ -72,9 +78,36 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
 
           isScrollable: false,
           tabs: [
-            Tab(child: Center(child: Text('Bar\nChart', textAlign: TextAlign.center,))),
-            Tab(child: Center(child: Text('Multi Lines\nChart', textAlign: TextAlign.center,))),
-            Tab(child: Center(child: Text('Pie\nChart', textAlign: TextAlign.center,))),
+            Tab(child: 
+              Center(child: 
+                Text('Bar', textAlign: TextAlign.center,style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),),
+              ),
+            ),
+            Tab(child: 
+              Center(child: 
+                Text('Line', textAlign: TextAlign.center,style: TextStyle(fontSize: 12 , fontWeight: FontWeight.bold),),
+              ),
+            ),
+            Tab(child: 
+              Center(child: 
+                Text('Pie', textAlign: TextAlign.center,style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),),
+              ),
+            ),
+            Tab(child: 
+              Center(child: 
+                Text('Doughnut', textAlign: TextAlign.center,style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),),
+              ),
+            ),
+            Tab(child: 
+              Center(child: 
+                Text('Area', textAlign: TextAlign.center,style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),),
+              ),
+            ),
+            Tab(child: 
+              Center(child: 
+                Text('Step\nLine', textAlign: TextAlign.center,style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),),
+              ),
+            ),
           ],
         ),
 

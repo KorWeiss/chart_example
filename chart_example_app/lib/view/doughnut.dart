@@ -3,20 +3,22 @@ import 'package:chart_example_app/model/developer_data.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-class Bar extends StatefulWidget {
+class Doughnut extends StatefulWidget {
   final List<DeveloperData> _chartData;
   final TooltipBehavior _tooltipBehavior;
-  const Bar({super.key, required List<DeveloperData> chartData, required TooltipBehavior tooltipBehavior})
+  const Doughnut({super.key, required List<DeveloperData> chartData, required TooltipBehavior tooltipBehavior})
       : _chartData = chartData,
         _tooltipBehavior = tooltipBehavior;
 
   @override
-  State<Bar> createState() => _BarState();
+  State<Doughnut> createState() => _DoughnutState();
 }
 
-class _BarState extends State<Bar> {
+class _DoughnutState extends State<Doughnut> {
   //Property
   //late 는 초기화를 나중으로 미룸
+  late List<DeveloperData> _chartData;
+  
 
 
   @override
@@ -36,7 +38,7 @@ class _BarState extends State<Bar> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Bar",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        title: const Text("Doughnut", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.white, // AppBar 배경색
         foregroundColor: Colors.black, // AppBar 글자색
         centerTitle: false,
@@ -48,33 +50,32 @@ class _BarState extends State<Bar> {
             SizedBox(
               width: 380,
               height: 600,
-              child: SfCartesianChart(
+              child: SfCircularChart(
                 title: ChartTitle(text: "Yearly  Growth  in the Flutter Community"), //차트 제목
                 legend: Legend(isVisible: true,title: LegendTitle(text: '범례')), //범례
                 tooltipBehavior: widget._tooltipBehavior,
                 series: [
                   //ColumnSeries = 세로 막대 그래프
                   //BarSeries = 가로 막대 그래프
-                  ColumnSeries<DeveloperData, int>(
+                  DoughnutSeries<DeveloperData, int>(
                     name: "사이트 수", //범례 이름
                     dataSource: widget._chartData,
+                    selectionBehavior: SelectionBehavior( //
+                      enable: true,
+                      toggleSelection: true, //
+                    ),
                     xValueMapper: (DeveloperData developers, _) { //x축 값 설정
                       return developers.years; //연도
                     }, 
                     yValueMapper: (DeveloperData developers, _)=> developers.developers, //y축 값 설정 //사이트 수, 
                     dataLabelSettings: const DataLabelSettings(isVisible: true), //데이터 라벨 설정
                     enableTooltip: true,
+                    explode: true, //조각 분리
+                    explodeIndex: 0, //처음 조각 분리
+                    explodeOffset: '20%', //조각 분리 거리
                   ),
                 ],
-                //x축을 CategoryAxis 로 표현
-                primaryXAxis: CategoryAxis(
-                  title: AxisTitle(text: "연도",),
-                  labelRotation: 45,
-                ),
-                //y축을 NumericAxis 로 표현
-                primaryYAxis: NumericAxis( 
-                  title: AxisTitle(text: "사이트 수",),            
-                ),
+                //X,Y축은 없음
               ),
             ),
           ],
@@ -85,6 +86,12 @@ class _BarState extends State<Bar> {
 
 
   //--------Functions ------------
-  
+  void _addData() {
+    _chartData.add(DeveloperData(years: 2017, developers: 19000));
+    _chartData.add(DeveloperData(years: 2018, developers: 40000));
+    _chartData.add(DeveloperData(years: 2019, developers: 35000));
+    _chartData.add(DeveloperData(years: 2020, developers: 37000));
+    _chartData.add(DeveloperData(years: 2021, developers: 45000));
+  }
   //------------------------------
 }
