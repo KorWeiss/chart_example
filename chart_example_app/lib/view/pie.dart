@@ -38,7 +38,7 @@ class _PieState extends State<Pie> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: Text('Pie Chart')),
+      appBar: AppBar(title: Text('Pie', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
       body: Center(
         child: SizedBox(
           width: 400,

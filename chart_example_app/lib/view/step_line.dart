@@ -26,7 +26,7 @@ class _StepLineState extends State<StepLine> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: Text('Step Line')),
+      appBar: AppBar(title: Text('Step Line', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
 
       body: Center(
         child: Center(

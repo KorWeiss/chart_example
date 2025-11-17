@@ -26,7 +26,7 @@ class _LineState extends State<Line> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: restiApB(inputtext: 'Line'),
+      appBar: restiApB(inputtext: 'Line'),
       body: Center(
         child: SizedBox(
           width: 400,

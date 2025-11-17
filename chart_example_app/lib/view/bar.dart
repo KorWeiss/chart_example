@@ -35,12 +35,12 @@ class _BarState extends State<Bar> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   title: const Text("Bar Chart"),
-      //   backgroundColor: Colors.blue, // AppBar 배경색
-      //   foregroundColor: Colors.white, // AppBar 글자색
-      //   centerTitle: true,
-      // ),
+      appBar: AppBar(
+        title: const Text("Bar",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.white, // AppBar 배경색
+        foregroundColor: Colors.black, // AppBar 글자색
+        centerTitle: false,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -46,12 +46,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("차트 탭바"),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   title: const Text("차트 탭바"),
+      //   backgroundColor: Colors.blue,
+      //   foregroundColor: Colors.white,
+      //   centerTitle: true,
+      // ),
       body: TabBarView( //화면 이동이 아니라 화면 바꿔치기
         controller: tabbarController,
         physics: NeverScrollableScrollPhysics(), // 🔒 스와이프 막기
