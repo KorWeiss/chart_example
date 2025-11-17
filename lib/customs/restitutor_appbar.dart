@@ -6,6 +6,7 @@ enum Sort { l, r, c }
 restiApB({
   Color bgc = Colors.white,
   Text? text,
+  String inputtext = 'title',
   Widget? leading,
   Sort align = Sort.l,
   TextStyle? textstyle,
@@ -16,16 +17,16 @@ restiApB({
     case Sort.l:
       titleWidget = (Align(
         alignment: Alignment.centerLeft,
-        child: text ?? Text('title', style: textstyle ?? styleTS()),
+        child: Text(inputtext, style: textstyle ?? styleTS()),
       ));
       break;
     case Sort.r:
       titleWidget = (Align(
         alignment: Alignment.centerRight,
-        child: text ?? Text('title', style: textstyle ?? styleTS()),
+        child: Text(inputtext, style: textstyle ?? styleTS()),
       ));
     default:
-      titleWidget = text ?? Text('title', style: textstyle ?? styleTS());
+      titleWidget = Text(inputtext, style: textstyle ?? styleTS());
       break;
   }
 
