@@ -52,7 +52,7 @@ class _DoughnutState extends State<Doughnut> {
               height: 600,
               child: SfCircularChart(
                 title: ChartTitle(text: "Yearly  Growth  in the Flutter Community"), //차트 제목
-                legend: Legend(isVisible: true), //범례
+                legend: Legend(isVisible: true,title: LegendTitle(text: '범례')), //범례
                 tooltipBehavior: widget._tooltipBehavior,
                 series: [
                   //ColumnSeries = 세로 막대 그래프

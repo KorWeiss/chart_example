@@ -5,6 +5,7 @@ import 'package:chart_example_app/view/bar.dart';
 import 'package:chart_example_app/view/doughnut.dart';
 import 'package:chart_example_app/view/line.dart';
 import 'package:chart_example_app/view/pie.dart';
+import 'package:chart_example_app/view/step_lines.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -61,7 +62,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
           Pie(chartData: _chartData, tooltipBehavior: _tooltipBehavior),
           Doughnut(chartData: _chartData , tooltipBehavior: _tooltipBehavior),
           Area(list: _chartData, tooltipBehavior: _tooltipBehavior),
-          Pie(chartData: _chartData, tooltipBehavior: _tooltipBehavior),
+          StepLines(list: _chartData),
         ],
       ),
       bottomNavigationBar: Container(
