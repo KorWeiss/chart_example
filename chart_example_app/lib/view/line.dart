@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Line extends StatefulWidget {
-  final List<DeveloperData> list;
-  final tooltipBehavior;
-  const Line({super.key, required this.list, required this.tooltipBehavior});
+  final List<DeveloperData> chartData;
+  final TooltipBehavior tooltipBehavior;
+  const Line({super.key, required this.chartData, required this.tooltipBehavior});
 
   @override
   State<Line> createState() => _LineState();
@@ -19,7 +19,7 @@ class _LineState extends State<Line> {
   @override
   void initState() {
     super.initState();
-    _developerDataList = widget.list;
+    _developerDataList = widget.chartData;
     _tooltipBehavior = TooltipBehavior(enable: true);
   }
 
